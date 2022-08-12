@@ -14,6 +14,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "games")
+@AttributeOverride(
+        name = "name", column = @Column(length = 50, nullable = false, updatable = false)
+)
 public class GameModel extends AbstractEntertainmentModel {
 
     @ManyToMany

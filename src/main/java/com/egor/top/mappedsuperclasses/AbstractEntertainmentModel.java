@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @Getter
@@ -15,7 +15,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class AbstractEntertainmentModel extends AbstractItemModel {
 
-    @Column(length = 100, unique = true, nullable = false, updatable = false)
+    @NaturalId
     private String name;
 
 }
