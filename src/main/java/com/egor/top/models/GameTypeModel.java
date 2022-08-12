@@ -19,7 +19,7 @@ import java.util.Set;
 })
 public class GameTypeModel extends AbstractEntertainmentModel {
 
-    @ManyToMany(mappedBy = "types", cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "types", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     private Set<GameModel> games = new HashSet<>();
 
 

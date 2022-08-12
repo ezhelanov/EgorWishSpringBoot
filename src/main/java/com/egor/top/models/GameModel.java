@@ -19,7 +19,7 @@ import java.util.Set;
 })
 public class GameModel extends AbstractEntertainmentModel {
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "game2gametype",
             joinColumns = @JoinColumn(name = "game_id"),
@@ -30,9 +30,12 @@ public class GameModel extends AbstractEntertainmentModel {
 
     private int year;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "company_id")
     private GameCompanyModel company;
+
+    @OneToOne(mappedBy = "game", cascade = CascadeType.REMOVE)
+    private GameDetailsModel details;
 
     public GameModel(String name, int year) {
         super(name);

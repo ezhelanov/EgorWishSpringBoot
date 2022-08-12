@@ -39,9 +39,7 @@ public abstract class AbstractHibernationService {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            GAME_TYPE_LIST.forEach(session::persist);
             GAME_MODEL_LIST.forEach(session::persist);
-            GAME_COMPANY_LIST.forEach(session::persist);
 
             addAll(GAME_MODEL_LIST.get(0).getTypes(), GAME_TYPE_LIST.get(2), GAME_TYPE_LIST.get(4));
             addAll(GAME_MODEL_LIST.get(1).getTypes(), GAME_TYPE_LIST.get(2), GAME_TYPE_LIST.get(4));

@@ -18,13 +18,12 @@ public class HibernationServiceImpl extends AbstractHibernationService {
             GameTypeModel gameTypeModel = new GameTypeModel("1-st person");
             GameModel gameModel = new GameModel("Doom 3", 2007);
 
+            session.persist(gameTypeModel); // [type] transient -> persistent
+
             gameTypeModel.getGames().add(gameModel);
-
-            session.persist(gameTypeModel); // [type, game] transient -> persistent
-
             gameModel.getTypes().add(gameTypeModel);
 
-            transaction.commit();
+            transaction.commit(); // [game] transient -> persistent
         } catch (Exception e) {
             log.error(e.getMessage());
         }
