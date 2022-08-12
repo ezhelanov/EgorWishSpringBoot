@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
@@ -44,4 +43,39 @@ public class GameService {
         return Set.copyOf(games);
     }
 
+    public void deleteType(String typeName) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            GameTypeModel gameTypeModel = session.bySimpleNaturalId(GameTypeModel.class).loadOptional(typeName).orElse(null);
+
+            if (gameTypeModel != null) {
+                session.delete(gameTypeModel);
+            } else {
+                log.error("No [GameTypeModel] with [name] {}", typeName);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+    }
+
+    public void deleteGame(String name) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            GameModel gameModel = session.bySimpleNaturalId(GameModel.class).loadOptional(name).orElse(null);
+
+            if (gameModel != null) {
+                session.remove(gameModel);
+            } else {
+                log.error("No [GameModel] with [name] {}", name);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+    }
 }

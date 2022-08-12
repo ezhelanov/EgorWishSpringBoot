@@ -79,20 +79,4 @@ public abstract class AbstractHibernationService {
         }
     }
 
-    public void deleteGame(String name) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-
-            GameModel gameModel = session.bySimpleNaturalId(GameModel.class).load(name);
-
-            session.remove(gameModel);
-
-            transaction.commit();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-    }
-
-
-
 }
