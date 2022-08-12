@@ -30,6 +30,9 @@ public class GameModel extends AbstractEntertainmentModel {
 
     private int year;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private GameCompanyModel company;
 
     public GameModel(String name, int year) {
         super(name);

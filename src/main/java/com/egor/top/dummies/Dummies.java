@@ -1,5 +1,6 @@
 package com.egor.top.dummies;
 
+import com.egor.top.models.GameCompanyModel;
 import com.egor.top.models.GameModel;
 import com.egor.top.models.GameTypeModel;
 
@@ -28,6 +29,13 @@ public interface Dummies {
             new GameModel("The Forest", 2017),
             new GameModel("7 Days To Die", 2011),
             new GameModel("Rage", 2011)
+    );
+
+    List<GameCompanyModel> GAME_COMPANY_LIST = List.of(
+            new GameCompanyModel("Volition"),
+            new GameCompanyModel("Bethesda"),
+            new GameCompanyModel("Crytek"),
+            new GameCompanyModel("GSC")
     );
 
 }
