@@ -1,14 +1,18 @@
 package com.egor.top.models;
 
 import com.egor.top.mappedsuperclasses.AbstractEntertainmentModel;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "gametypes")
 @AttributeOverride(
@@ -16,13 +20,8 @@ import java.util.Set;
 )
 public class GameTypeModel extends AbstractEntertainmentModel {
 
-    @ManyToMany(mappedBy = "types", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "types", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<GameModel> games = new HashSet<>();
-
-
-    public Set<GameModel> getGames() {
-        return Collections.unmodifiableSet(games);
-    }
 
     public GameTypeModel(String name) { super(name); }
 }
