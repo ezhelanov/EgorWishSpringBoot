@@ -15,7 +15,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class AbstractEntertainmentModel extends AbstractItemModel {
 
-    @Column(unique = true, nullable = false, length = 100)
+    @Column(length = 100, unique = true, nullable = false, updatable = false)
     private String name;
 
 }

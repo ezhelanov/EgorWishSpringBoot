@@ -21,9 +21,16 @@ public class GameModel extends AbstractEntertainmentModel {
             name = "game2gametype",
             joinColumns = @JoinColumn(name = "game_id"),
             inverseJoinColumns = @JoinColumn(name = "gametype_id"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"game_id", "gametype_id"})
+            uniqueConstraints = @UniqueConstraint(columnNames = { "game_id", "gametype_id" })
     )
-    private Set<GameTypeModel> types;
+    private Set<GameTypeModel> types = new HashSet<>();
 
-    public GameModel(String name) { super(name); }
+    @Column(length = 4)
+    private int year;
+
+
+    public GameModel(String name, int year) {
+        super(name);
+        this.year = year;
+    }
 }

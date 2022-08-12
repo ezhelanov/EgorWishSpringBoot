@@ -9,7 +9,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -17,17 +16,12 @@ import java.util.Set;
 @Table(name = "gametypes")
 public class GameTypeModel extends AbstractEntertainmentModel {
 
-    @ManyToMany(mappedBy = "types", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+    @ManyToMany(mappedBy = "types", cascade = CascadeType.ALL)
     private Set<GameModel> games = new HashSet<>();
 
 
     public Set<GameModel> getGames() {
         return Collections.unmodifiableSet(games);
-    }
-
-    public void addGames(List<GameModel> gameModels) {
-        this.games.addAll(gameModels);
-        for (GameModel gameModel : gameModels) gameModel.getTypes().add(this);
     }
 
     public GameTypeModel(String name) { super(name); }
