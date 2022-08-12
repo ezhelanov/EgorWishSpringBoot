@@ -14,6 +14,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "companies")
+@AttributeOverrides({
+        @AttributeOverride(name = "name", column = @Column(length = 20, nullable = false, updatable = false))
+})
 public class GameCompanyModel extends AbstractEntertainmentModel {
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
