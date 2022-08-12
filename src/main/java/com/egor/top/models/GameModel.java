@@ -25,7 +25,6 @@ public class GameModel extends AbstractEntertainmentModel {
     )
     private Set<GameTypeModel> types = new HashSet<>();
 
-    @Column(length = 4)
     private int year;
 
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface Dummies {
 
-    List<GameTypeModel> GAME_TYPE_MODEL_LIST = List.of(
+    List<GameTypeModel> GAME_TYPE_LIST = List.of(
             new GameTypeModel("Survival"),
             new GameTypeModel("Horror"),
             new GameTypeModel("RPG"),
