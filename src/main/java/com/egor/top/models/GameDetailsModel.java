@@ -2,6 +2,7 @@ package com.egor.top.models;
 
 import com.egor.top.mappedsuperclasses.AbstractItemModel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -22,4 +24,9 @@ public class GameDetailsModel extends AbstractItemModel {
 
     @Type(type = "text")
     private String description;
+
+
+    public GameDetailsModel(String description) {
+        this.description = description;
+    }
 }

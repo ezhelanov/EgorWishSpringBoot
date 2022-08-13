@@ -34,7 +34,7 @@ public class GameModel extends AbstractEntertainmentModel {
     @JoinColumn(name = "company_id")
     private GameCompanyModel company;
 
-    @OneToOne(mappedBy = "game", cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "game", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     private GameDetailsModel details;
 
     public GameModel(String name, int year) {

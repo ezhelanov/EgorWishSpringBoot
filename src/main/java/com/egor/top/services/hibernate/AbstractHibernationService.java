@@ -15,53 +15,39 @@ public abstract class AbstractHibernationService {
     @Autowired
     protected SessionFactory sessionFactory;
 
-    public void saveAllGames() {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            GAME_MODEL_LIST.forEach(session::persist);
-            transaction.commit();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-    }
-
-    public void saveAllTypes() {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            GAME_TYPE_LIST.forEach(session::persist);
-            transaction.commit();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-    }
 
     public void fullInit() {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            GAME_MODEL_LIST.forEach(session::persist);
+            GAMES.forEach(session::persist);
 
-            addAll(GAME_MODEL_LIST.get(0).getTypes(), GAME_TYPE_LIST.get(2), GAME_TYPE_LIST.get(4));
-            addAll(GAME_MODEL_LIST.get(1).getTypes(), GAME_TYPE_LIST.get(2), GAME_TYPE_LIST.get(4));
-            addAll(GAME_MODEL_LIST.get(2).getTypes(), GAME_TYPE_LIST.get(2), GAME_TYPE_LIST.get(4));
-            addAll(GAME_MODEL_LIST.get(3).getTypes(), GAME_TYPE_LIST.get(3), GAME_TYPE_LIST.get(4));
-            addAll(GAME_MODEL_LIST.get(4).getTypes(), GAME_TYPE_LIST.get(5), GAME_TYPE_LIST.get(4));
-            addAll(GAME_MODEL_LIST.get(5).getTypes(), GAME_TYPE_LIST.get(2), GAME_TYPE_LIST.get(4), GAME_TYPE_LIST.get(6));
-            addAll(GAME_MODEL_LIST.get(6).getTypes(), GAME_TYPE_LIST.get(0), GAME_TYPE_LIST.get(1));
-            addAll(GAME_MODEL_LIST.get(7).getTypes(), GAME_TYPE_LIST.get(0), GAME_TYPE_LIST.get(1), GAME_TYPE_LIST.get(4));
-            addAll(GAME_MODEL_LIST.get(8).getTypes(), GAME_TYPE_LIST.get(2), GAME_TYPE_LIST.get(4));
+            addAll(GAMES.get(0).getTypes(), TYPES.get(2), TYPES.get(4), TYPES.get(0), TYPES.get(1));
+            addAll(GAMES.get(1).getTypes(), TYPES.get(2), TYPES.get(4));
+            addAll(GAMES.get(2).getTypes(), TYPES.get(2), TYPES.get(4));
+            addAll(GAMES.get(3).getTypes(), TYPES.get(3), TYPES.get(4));
+            addAll(GAMES.get(4).getTypes(), TYPES.get(5), TYPES.get(4));
+            addAll(GAMES.get(5).getTypes(), TYPES.get(2), TYPES.get(4), TYPES.get(6));
+            addAll(GAMES.get(6).getTypes(), TYPES.get(0), TYPES.get(1));
+            addAll(GAMES.get(7).getTypes(), TYPES.get(0), TYPES.get(1), TYPES.get(4));
+            addAll(GAMES.get(8).getTypes(), TYPES.get(2), TYPES.get(4));
 
             session.flush();
 
-            GAME_MODEL_LIST.get(0).setCompany(GAME_COMPANY_LIST.get(3));
-            GAME_MODEL_LIST.get(1).setCompany(GAME_COMPANY_LIST.get(1));
-            GAME_MODEL_LIST.get(2).setCompany(GAME_COMPANY_LIST.get(0));
-            GAME_MODEL_LIST.get(3).setCompany(GAME_COMPANY_LIST.get(2));
-            GAME_MODEL_LIST.get(4).setCompany(GAME_COMPANY_LIST.get(1));
-            GAME_MODEL_LIST.get(8).setCompany(GAME_COMPANY_LIST.get(1));
-            GAME_MODEL_LIST.get(5).setCompany(GAME_COMPANY_LIST.get(0));
-            GAME_MODEL_LIST.get(6).setCompany(GAME_COMPANY_LIST.get(3));
-            GAME_MODEL_LIST.get(7).setCompany(GAME_COMPANY_LIST.get(2));
+            GAMES.get(0).setCompany(COMPANIES.get(3));
+            GAMES.get(1).setCompany(COMPANIES.get(1));
+            GAMES.get(2).setCompany(COMPANIES.get(0));
+            GAMES.get(3).setCompany(COMPANIES.get(2));
+            GAMES.get(4).setCompany(COMPANIES.get(1));
+            GAMES.get(8).setCompany(COMPANIES.get(1));
+            GAMES.get(5).setCompany(COMPANIES.get(0));
+            GAMES.get(6).setCompany(COMPANIES.get(3));
+            GAMES.get(7).setCompany(COMPANIES.get(2));
+
+            for (int i = 0; i < 3; i++) {
+                GAMES.get(i).setDetails(DETAILS.get(i));
+                DETAILS.get(i).setGame(GAMES.get(i));
+            }
 
             transaction.commit();
         } catch (Exception e) {
