@@ -15,7 +15,10 @@ import java.util.Set;
 @Entity
 @Table(name = "companies")
 @AttributeOverrides({
-        @AttributeOverride(name = "name", column = @Column(length = 20, nullable = false, updatable = false))
+        @AttributeOverride(
+                name = "name",
+                column = @Column(length = 20, nullable = false, updatable = false)
+        )
 })
 public class GameCompanyModel extends AbstractEntertainmentModel {
 

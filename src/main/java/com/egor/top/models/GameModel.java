@@ -4,6 +4,8 @@ import com.egor.top.mappedsuperclasses.AbstractEntertainmentModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,7 +17,10 @@ import java.util.Set;
 @Entity
 @Table(name = "games")
 @AttributeOverrides({
-        @AttributeOverride(name = "name", column = @Column(length = 50, nullable = false, updatable = false))
+        @AttributeOverride(
+                name = "name",
+                column = @Column(length = 50, nullable = false, updatable = false)
+        )
 })
 public class GameModel extends AbstractEntertainmentModel {
 
@@ -34,8 +39,14 @@ public class GameModel extends AbstractEntertainmentModel {
     @JoinColumn(name = "company_id")
     private GameCompanyModel company;
 
-    @OneToOne(mappedBy = "game", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+    @OneToOne(
+            mappedBy = "game",
+            cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
+            fetch = FetchType.LAZY
+    )
+    @LazyToOne(value = LazyToOneOption.NO_PROXY)
     private GameDetailsModel details;
+
 
     public GameModel(String name, int year) {
         super(name);
