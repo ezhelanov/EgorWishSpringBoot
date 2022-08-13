@@ -45,8 +45,8 @@ public abstract class AbstractHibernationService {
             GAMES.get(7).setCompany(COMPANIES.get(2));
 
             for (int i = 0; i < 3; i++) {
-                GAMES.get(i).setDetails(DETAILS.get(i));
                 DETAILS.get(i).setGame(GAMES.get(i));
+                session.persist(DETAILS.get(i));
             }
 
             transaction.commit();
