@@ -42,7 +42,8 @@ public class GameModel extends AbstractEntertainmentModel {
     @OneToOne(
             mappedBy = "game",
             cascade = { CascadeType.PERSIST, CascadeType.REMOVE },
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
     )
     @LazyToOne(value = LazyToOneOption.NO_PROXY)
     private GameDetailsModel details;
