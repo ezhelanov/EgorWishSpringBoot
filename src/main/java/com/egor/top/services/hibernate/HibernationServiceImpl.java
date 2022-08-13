@@ -1,10 +1,14 @@
 package com.egor.top.services.hibernate;
 
+import com.egor.top.models.GameDetailsModel;
 import com.egor.top.models.GameModel;
 import com.egor.top.models.GameTypeModel;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.engine.spi.PersistenceContext;
+import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.internal.SessionImpl;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -15,15 +19,17 @@ public class HibernationServiceImpl extends AbstractHibernationService {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            GameTypeModel gameTypeModel = new GameTypeModel("1-st person");
-            GameModel gameModel = new GameModel("Doom 3", 2007);
+            GameModel gameModel = session.bySimpleNaturalId(GameModel.class).load("Fallout 4");
+            GameDetailsModel old = gameModel.getDetails();
+            GameDetailsModel gameDetailsModel = new GameDetailsModel("Fallout 4 new");
 
-            session.persist(gameTypeModel); // [type] transient -> persistent
+            old.setGame(null);
+            session.flush();
 
-            gameTypeModel.getGames().add(gameModel);
-            gameModel.getTypes().add(gameTypeModel);
+            gameModel.setDetails(gameDetailsModel);
+            gameDetailsModel.setGame(gameModel);
 
-            transaction.commit(); // [game] transient -> persistent
+            transaction.commit();
         } catch (Exception e) {
             log.error(e.getMessage());
         }
