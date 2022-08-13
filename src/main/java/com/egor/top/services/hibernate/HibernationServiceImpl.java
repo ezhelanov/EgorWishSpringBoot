@@ -16,7 +16,6 @@ public class HibernationServiceImpl extends AbstractHibernationService {
             Transaction transaction = session.beginTransaction();
 
             GameModel gameModel = session.bySimpleNaturalId(GameModel.class).load("Fallout 4");
-
             GameDetailsModel neW = new GameDetailsModel("Fallout new");
 
             gameModel.setDetails(neW);
