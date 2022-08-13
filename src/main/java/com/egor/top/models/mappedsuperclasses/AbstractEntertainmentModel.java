@@ -1,4 +1,4 @@
-package com.egor.top.mappedsuperclasses;
+package com.egor.top.models.mappedsuperclasses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

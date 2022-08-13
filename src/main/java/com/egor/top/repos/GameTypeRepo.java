@@ -1,9 +1,9 @@
 package com.egor.top.repos;
 
-import com.egor.top.models.GameTypeModel;
-import com.egor.top.norepositorybeans.AbstractEntertainmentRepo;
+import com.egor.top.models.TypeModel;
+import com.egor.top.repos.norepositorybeans.AbstractEntertainmentRepo;
 
-public interface GameTypeRepo extends AbstractEntertainmentRepo<GameTypeModel> {
+public interface GameTypeRepo extends AbstractEntertainmentRepo<TypeModel> {
 
 
 }

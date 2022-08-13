@@ -1,6 +1,6 @@
 package com.egor.top.services.hibernate;
 
-import com.egor.top.models.GameDetailsModel;
+import com.egor.top.models.DetailsModel;
 import com.egor.top.models.GameModel;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
@@ -16,7 +16,7 @@ public class HibernationServiceImpl extends AbstractHibernationService {
             Transaction transaction = session.beginTransaction();
 
             GameModel gameModel = session.bySimpleNaturalId(GameModel.class).load("Fallout 4");
-            GameDetailsModel neW = new GameDetailsModel("Fallout new");
+            DetailsModel neW = new DetailsModel("Fallout new");
 
             gameModel.setDetails(neW);
             neW.setGame(gameModel);

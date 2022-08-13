@@ -1,6 +1,6 @@
 package com.egor.top.models;
 
-import com.egor.top.mappedsuperclasses.AbstractEntertainmentModel;
+import com.egor.top.models.mappedsuperclasses.AbstractEntertainmentModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,13 +31,13 @@ public class GameModel extends AbstractEntertainmentModel {
             inverseJoinColumns = @JoinColumn(name = "gametype_id"),
             uniqueConstraints = @UniqueConstraint(columnNames = { "game_id", "gametype_id" })
     )
-    private Set<GameTypeModel> types = new HashSet<>();
+    private Set<TypeModel> types = new HashSet<>();
 
     private int year;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "company_id")
-    private GameCompanyModel company;
+    private CompanyModel company;
 
     @OneToOne(
             mappedBy = "game",
@@ -45,7 +45,7 @@ public class GameModel extends AbstractEntertainmentModel {
             orphanRemoval = true
     )
     @LazyToOne(value = LazyToOneOption.NO_PROXY)
-    private GameDetailsModel details;
+    private DetailsModel details;
 
 
     public GameModel(String name, int year) {

@@ -1,8 +1,8 @@
 package com.egor.top.services.game;
 
-import com.egor.top.models.GameCompanyModel;
+import com.egor.top.models.CompanyModel;
 import com.egor.top.models.GameModel;
-import com.egor.top.models.GameTypeModel;
+import com.egor.top.models.TypeModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
@@ -28,10 +28,10 @@ public class GameService {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            GameTypeModel gameTypeModel = session.bySimpleNaturalId(GameTypeModel.class).loadOptional(typeName).orElse(null);
+            TypeModel typeModel = session.bySimpleNaturalId(TypeModel.class).loadOptional(typeName).orElse(null);
 
-            if (gameTypeModel != null) {
-                games = gameTypeModel.getGames();
+            if (typeModel != null) {
+                games = typeModel.getGames();
             } else {
                 log.error("[GameTypeModel] with [name] {} not found!", typeName);
             }
@@ -48,10 +48,10 @@ public class GameService {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            GameTypeModel gameTypeModel = session.bySimpleNaturalId(GameTypeModel.class).loadOptional(typeName).orElse(null);
+            TypeModel typeModel = session.bySimpleNaturalId(TypeModel.class).loadOptional(typeName).orElse(null);
 
-            if (gameTypeModel != null) {
-                session.delete(gameTypeModel);
+            if (typeModel != null) {
+                session.delete(typeModel);
             } else {
                 log.error("No [GameTypeModel] with [name] {}", typeName);
             }
@@ -84,7 +84,7 @@ public class GameService {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            GameCompanyModel companyModel = session.bySimpleNaturalId(GameCompanyModel.class).loadOptional(name).orElse(null);
+            CompanyModel companyModel = session.bySimpleNaturalId(CompanyModel.class).loadOptional(name).orElse(null);
 
             if (companyModel != null) {
                 session.remove(companyModel);

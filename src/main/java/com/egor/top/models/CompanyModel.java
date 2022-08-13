@@ -1,6 +1,6 @@
 package com.egor.top.models;
 
-import com.egor.top.mappedsuperclasses.AbstractEntertainmentModel;
+import com.egor.top.models.mappedsuperclasses.AbstractEntertainmentModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,13 +20,13 @@ import java.util.Set;
                 column = @Column(length = 20, nullable = false, updatable = false)
         )
 })
-public class GameCompanyModel extends AbstractEntertainmentModel {
+public class CompanyModel extends AbstractEntertainmentModel {
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
     private Set<GameModel> games = new HashSet<>();
 
 
-    public GameCompanyModel(String name) {
+    public CompanyModel(String name) {
         super(name);
     }
 }

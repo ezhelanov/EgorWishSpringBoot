@@ -1,6 +1,6 @@
 package com.egor.top.models;
 
-import com.egor.top.mappedsuperclasses.AbstractItemModel;
+import com.egor.top.models.mappedsuperclasses.AbstractItemModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "details")
-public class GameDetailsModel extends AbstractItemModel {
+public class DetailsModel extends AbstractItemModel {
 
     @OneToOne
     @JoinColumn(name = "game_id", unique = true)
@@ -23,7 +23,7 @@ public class GameDetailsModel extends AbstractItemModel {
     private String description;
 
 
-    public GameDetailsModel(String description) {
+    public DetailsModel(String description) {
         this.description = description;
     }
 }
