@@ -1,8 +1,8 @@
 package com.egor.top.services.game;
 
-import com.egor.top.models.CompanyModel;
-import com.egor.top.models.GameModel;
-import com.egor.top.models.TypeModel;
+import com.egor.top.models.game.CompanyModel;
+import com.egor.top.models.game.GameModel;
+import com.egor.top.models.game.TypeModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;

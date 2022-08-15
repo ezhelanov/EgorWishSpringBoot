@@ -1,6 +1,7 @@
-package com.egor.top.models;
+package com.egor.top.models.game;
 
-import com.egor.top.models.mappedsuperclasses.AbstractItemModel;
+import com.egor.top.models.AbstractItemModel;
+import com.egor.top.models.game.GameModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

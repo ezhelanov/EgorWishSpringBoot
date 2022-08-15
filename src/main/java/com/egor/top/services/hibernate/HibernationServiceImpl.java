@@ -1,7 +1,7 @@
 package com.egor.top.services.hibernate;
 
-import com.egor.top.models.DetailsModel;
-import com.egor.top.models.GameModel;
+import com.egor.top.models.game.DetailsModel;
+import com.egor.top.models.game.GameModel;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

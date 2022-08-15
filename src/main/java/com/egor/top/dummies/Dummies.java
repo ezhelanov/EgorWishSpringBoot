@@ -1,6 +1,6 @@
 package com.egor.top.dummies;
 
-import com.egor.top.models.*;
+import com.egor.top.models.game.*;
 
 import java.util.List;
 

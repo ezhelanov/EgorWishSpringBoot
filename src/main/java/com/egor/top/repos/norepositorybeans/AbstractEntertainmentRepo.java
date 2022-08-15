@@ -1,6 +1,6 @@
 package com.egor.top.repos.norepositorybeans;
 
-import com.egor.top.models.mappedsuperclasses.AbstractEntertainmentModel;
+import com.egor.top.models.AbstractEntertainmentModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
