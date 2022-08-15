@@ -1,9 +1,6 @@
 package com.egor.top.dummies;
 
-import com.egor.top.models.CompanyModel;
-import com.egor.top.models.DetailsModel;
-import com.egor.top.models.GameModel;
-import com.egor.top.models.TypeModel;
+import com.egor.top.models.*;
 
 import java.util.List;
 
@@ -26,10 +23,10 @@ public interface Dummies {
             new GameModel("Saints Row 4", 2011),
             new GameModel("Crysis Wars", 2009),
             new GameModel("DOOM", 2016),
-            new GameModel("RDR 2", 2020),
+            new RTXGameModel("RDR 2", 2020),
             new GameModel("The Forest", 2017),
             new GameModel("7 Days To Die", 2011),
-            new GameModel("Rage", 2011)
+            new RTXGameModel("Cyberpunk 2077", 2020, true)
     );
 
     List<CompanyModel> COMPANIES = List.of(

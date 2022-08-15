@@ -22,6 +22,8 @@ import java.util.Set;
                 column = @Column(length = 50, nullable = false, updatable = false)
         )
 })
+@DiscriminatorValue("not_extended")
+@DiscriminatorColumn(name = "extended")
 public class GameModel extends AbstractEntertainmentModel {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
