@@ -1,4 +1,4 @@
-package com.egor.top.repos.norepositorybeans;
+package com.egor.top.repos;
 
 import com.egor.top.models.AbstractEntertainmentModel;
 import org.springframework.data.jpa.repository.JpaRepository;

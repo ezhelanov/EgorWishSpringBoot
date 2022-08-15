@@ -1,7 +1,7 @@
 package com.egor.top;
 
-import com.egor.top.repos.GameRepo;
-import com.egor.top.repos.GameTypeRepo;
+import com.egor.top.repos.game.GameRepo;
+import com.egor.top.repos.game.GameTypeRepo;
 import com.egor.top.services.game.GameService;
 import com.egor.top.services.hibernate.HibernationServiceImpl;
 import lombok.AllArgsConstructor;

@@ -1,8 +1,8 @@
-package com.egor.top.repos;
+package com.egor.top.repos.game;
 
 import com.egor.top.models.game.GameModel;
 import com.egor.top.models.game.RTXGameModel;
-import com.egor.top.repos.norepositorybeans.AbstractEntertainmentRepo;
+import com.egor.top.repos.AbstractEntertainmentRepo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
