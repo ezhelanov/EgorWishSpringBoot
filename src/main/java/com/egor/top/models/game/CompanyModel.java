@@ -1,7 +1,6 @@
 package com.egor.top.models.game;
 
 import com.egor.top.models.AbstractEntertainmentModel;
-import com.egor.top.models.game.GameModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

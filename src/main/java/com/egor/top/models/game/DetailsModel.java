@@ -1,13 +1,15 @@
 package com.egor.top.models.game;
 
 import com.egor.top.models.AbstractItemModel;
-import com.egor.top.models.game.GameModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @NoArgsConstructor
 @Getter
