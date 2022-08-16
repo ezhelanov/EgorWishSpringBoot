@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import static com.egor.top.dummies.Dummies.*;
@@ -18,7 +19,8 @@ import static java.util.Collections.addAll;
 @Service
 public class HibernationService {
 
-    protected SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
+    private final PasswordEncoder passwordEncoder;
 
 
     public void fullInit() {
@@ -68,11 +70,11 @@ public class HibernationService {
             RoleModel gameAdminRole = new RoleModel("GAME_ADMIN");
 
             gameAdminRole.getUsers().add(new UserModel(
-                    "admin", "nimda", "admin@ya.ru")
+                    "admin", passwordEncoder.encode("nimda"), "admin@ya.ru")
             );
             for (int i = 0; i < 3; i++) {
                 gamerRole.getUsers().add(new UserModel(
-                        format("Gamer%d", i), format("gamer%d", i), format("gamer%d@ya.ru", i))
+                        format("Gamer%d", i), passwordEncoder.encode(format("gamer%d", i)), format("gamer%d@ya.ru", i))
                 );
             };
 
