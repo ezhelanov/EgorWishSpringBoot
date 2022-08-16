@@ -15,4 +15,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class RoleModel extends AbstractNamedModel {
+
+    public RoleModel(String name) {
+        super(name);
+    }
 }

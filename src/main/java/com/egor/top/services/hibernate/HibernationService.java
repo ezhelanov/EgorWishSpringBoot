@@ -1,18 +1,22 @@
 package com.egor.top.services.hibernate;
 
+import com.egor.top.models.security.RoleModel;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import static com.egor.top.dummies.Dummies.*;
 import static java.util.Collections.addAll;
 
+@AllArgsConstructor
 @Slf4j
-public abstract class AbstractHibernationService {
+@Service
+public class HibernationService {
 
-    @Autowired
     protected SessionFactory sessionFactory;
 
 
@@ -55,4 +59,19 @@ public abstract class AbstractHibernationService {
         }
     }
 
+    public void createRoles() {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            RoleModel gamer = new RoleModel("GAMER");
+            RoleModel gameAdmin = new RoleModel("GAME_ADMIN");
+
+            session.persist(gamer);
+            session.persist(gameAdmin);
+
+            transaction.commit();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+    }
 }
