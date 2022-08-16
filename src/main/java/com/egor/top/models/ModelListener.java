@@ -1,7 +1,5 @@
-package com.egor.top.listeners.entity;
+package com.egor.top.models;
 
-import com.egor.top.models.AbstractNamedModel;
-import com.egor.top.models.AbstractItemModel;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.PostPersist;
