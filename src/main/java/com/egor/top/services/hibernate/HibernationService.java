@@ -1,15 +1,16 @@
 package com.egor.top.services.hibernate;
 
 import com.egor.top.models.security.RoleModel;
+import com.egor.top.models.security.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.egor.top.dummies.Dummies.*;
+import static java.lang.String.format;
 import static java.util.Collections.addAll;
 
 @AllArgsConstructor
@@ -59,15 +60,24 @@ public class HibernationService {
         }
     }
 
-    public void createRoles() {
+    public void createUsersAndRoles() {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            RoleModel gamer = new RoleModel("GAMER");
-            RoleModel gameAdmin = new RoleModel("GAME_ADMIN");
+            RoleModel gamerRole = new RoleModel("GAMER");
+            RoleModel gameAdminRole = new RoleModel("GAME_ADMIN");
 
-            session.persist(gamer);
-            session.persist(gameAdmin);
+            gameAdminRole.getUsers().add(new UserModel(
+                    "admin", "nimda", "admin@ya.ru")
+            );
+            for (int i = 0; i < 3; i++) {
+                gamerRole.getUsers().add(new UserModel(
+                        format("Gamer%d", i), format("gamer%d", i), format("gamer%d@ya.ru", i))
+                );
+            };
+
+            session.persist(gamerRole);
+            session.persist(gameAdminRole);
 
             transaction.commit();
         } catch (Exception e) {

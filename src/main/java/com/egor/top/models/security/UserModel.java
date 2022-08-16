@@ -21,12 +21,13 @@ public class UserModel extends AbstractNamedModel {
     @Column(unique = true)
     private String email;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user2role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"),
-            uniqueConstraints = @UniqueConstraint(columnNames = { "user_id", "role_id" })
-    )
+    @ManyToMany(mappedBy = "users")
     private Set<RoleModel> roles = new HashSet<>();
+
+
+    public UserModel(String name, String password, String email) {
+        super(name);
+        this.password = password;
+        this.email = email;
+    }
 }
