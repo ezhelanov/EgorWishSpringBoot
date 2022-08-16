@@ -27,7 +27,7 @@ public class TopApplication {
     public void f(){
 
 
-      hibernationServiceImpl.fullInit();
+      //hibernationServiceImpl.fullInit();
         //hibernationServiceImpl.cascadePersist();
     }
 

@@ -1,6 +1,6 @@
 package com.egor.top.models;
 
-import com.egor.top.listeners.ModelListener;
+import com.egor.top.listeners.entity.ModelListener;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;

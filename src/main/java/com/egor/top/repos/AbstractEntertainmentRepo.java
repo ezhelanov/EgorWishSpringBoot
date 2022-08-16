@@ -1,11 +1,11 @@
 package com.egor.top.repos;
 
-import com.egor.top.models.AbstractEntertainmentModel;
+import com.egor.top.models.AbstractNamedModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
-public interface AbstractEntertainmentRepo<T extends AbstractEntertainmentModel> extends JpaRepository<T, Integer> {
+public interface AbstractEntertainmentRepo<T extends AbstractNamedModel> extends JpaRepository<T, Integer> {
 
     T getByName(String name);
 }

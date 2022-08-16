@@ -1,6 +1,6 @@
-package com.egor.top.listeners;
+package com.egor.top.listeners.entity;
 
-import com.egor.top.models.AbstractEntertainmentModel;
+import com.egor.top.models.AbstractNamedModel;
 import com.egor.top.models.AbstractItemModel;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,8 +37,8 @@ public class ModelListener {
 
     private void audit(AbstractItemModel abstractItemModel, String status) {
         String className = abstractItemModel.getClass().getSimpleName();
-        if (abstractItemModel instanceof AbstractEntertainmentModel) {
-            log.trace(status + PREFIX + NAME, className, ((AbstractEntertainmentModel) abstractItemModel).getName());
+        if (abstractItemModel instanceof AbstractNamedModel) {
+            log.trace(status + PREFIX + NAME, className, ((AbstractNamedModel) abstractItemModel).getName());
             return;
         }
         log.trace(status + PREFIX + ID, className, abstractItemModel.getId());

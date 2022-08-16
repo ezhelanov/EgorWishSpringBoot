@@ -1,6 +1,6 @@
 package com.egor.top.models.game;
 
-import com.egor.top.models.AbstractEntertainmentModel;
+import com.egor.top.models.AbstractNamedModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,7 +24,7 @@ import java.util.Set;
 })
 @DiscriminatorValue("not_extended")
 @DiscriminatorColumn(name = "extended")
-public class GameModel extends AbstractEntertainmentModel {
+public class GameModel extends AbstractNamedModel {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
