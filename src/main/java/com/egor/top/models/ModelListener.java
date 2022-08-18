@@ -36,10 +36,10 @@ public class ModelListener {
     private void audit(AbstractItemModel abstractItemModel, String status) {
         String className = abstractItemModel.getClass().getSimpleName();
         if (abstractItemModel instanceof AbstractNamedModel) {
-            log.trace(status + PREFIX + NAME, className, ((AbstractNamedModel) abstractItemModel).getName());
+            LOG.trace(status + PREFIX + NAME, className, ((AbstractNamedModel) abstractItemModel).getName());
             return;
         }
-        log.trace(status + PREFIX + ID, className, abstractItemModel.getId());
+        LOG.trace(status + PREFIX + ID, className, abstractItemModel.getId());
     }
 
 }

@@ -58,7 +58,7 @@ public class HibernationService {
 
             transaction.commit();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            LOG.error(e.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class HibernationService {
 
             transaction.commit();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            LOG.error(e.getMessage());
         }
     }
 }

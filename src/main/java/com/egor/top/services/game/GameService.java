@@ -33,12 +33,12 @@ public class GameService {
             if (typeModel != null) {
                 games = typeModel.getGames();
             } else {
-                log.error("[GameTypeModel] with [name] {} not found!", typeName);
+                LOG.error("[GameTypeModel] with [name] {} not found!", typeName);
             }
 
             transaction.commit();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            LOG.error(e.getMessage());
         }
 
         return Set.copyOf(games);
@@ -53,12 +53,12 @@ public class GameService {
             if (typeModel != null) {
                 session.delete(typeModel);
             } else {
-                log.error("No [GameTypeModel] with [name] {}", typeName);
+                LOG.error("No [GameTypeModel] with [name] {}", typeName);
             }
 
             transaction.commit();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            LOG.error(e.getMessage());
         }
     }
 
@@ -71,12 +71,12 @@ public class GameService {
             if (gameModel != null) {
                 session.remove(gameModel);
             } else {
-                log.error("No [GameModel] with [name] {}", name);
+                LOG.error("No [GameModel] with [name] {}", name);
             }
 
             transaction.commit();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            LOG.error(e.getMessage());
         }
     }
 
@@ -89,12 +89,12 @@ public class GameService {
             if (companyModel != null) {
                 session.remove(companyModel);
             } else {
-                log.error("No [GameCompanyModel] with [name] {}", name);
+                LOG.error("No [GameCompanyModel] with [name] {}", name);
             }
 
             transaction.commit();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            LOG.error(e.getMessage());
         }
     }
 }
