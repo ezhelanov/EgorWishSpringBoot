@@ -1,0 +1,21 @@
+server:
+  port: 1998
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/egor_database
+    username: egorka
+    password: egorka
+  jpa:
+    generate-ddl: true
+    hibernate:
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+logging:
+  config: classpath:log4j2.properties
+custom:
+  jwt:
+    secret: jwtegorka
+    expiration_ms: 360000

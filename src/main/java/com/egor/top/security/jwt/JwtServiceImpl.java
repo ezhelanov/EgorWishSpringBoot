@@ -13,10 +13,10 @@ import java.util.Date;
 @Component
 public class JwtServiceImpl implements JwtService {
 
-    @Value("${app.jwt.secret}")
+    @Value("${custom.jwt.secret}")
     private String jwtSecret;
 
-    @Value("${app.jwt.expiration.ms}")
+    @Value("${custom.jwt.expiration_ms}")
     private long jwtExpirationMs;
 
 
