@@ -36,15 +36,18 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public String getUserNameFromJwt(String token) {
-        return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+    public String getUserNameFromJwt(String jwt) {
+        return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(jwt).getBody().getSubject();
     }
 
     @Override
-    public boolean isValidJwt(String authToken) {
+    public boolean isValidJwt(String jwt) {
+
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(jwt);
             return true;
+
         } catch (SignatureException e) {
             LOG.error("Invalid JWT signature: {}", e.getMessage());
         } catch (MalformedJwtException e) {
