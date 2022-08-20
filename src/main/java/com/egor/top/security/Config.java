@@ -17,6 +17,7 @@ public class Config extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -25,6 +26,7 @@ public class Config extends WebSecurityConfigurerAdapter {
 
     }
 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -32,7 +34,7 @@ public class Config extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManagerBean();
     }
 

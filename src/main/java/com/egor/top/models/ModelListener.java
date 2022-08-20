@@ -1,10 +1,12 @@
 package com.egor.top.models;
 
+import com.egor.top.models.security.RoleModel;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.PostPersist;
 import javax.persistence.PostRemove;
 import javax.persistence.PostUpdate;
+import javax.persistence.PrePersist;
 
 @Slf4j
 public class ModelListener {
@@ -32,6 +34,13 @@ public class ModelListener {
         audit(abstractItemModel, DELETED);
     }
 
+    @PrePersist
+    private void prePersist(AbstractItemModel abstractItemModel) {
+        if (abstractItemModel instanceof RoleModel) {
+            AbstractNamedModel roleModel = (AbstractNamedModel) abstractItemModel;
+            roleModel.setName("ROLE_" + roleModel.getName());
+        }
+    }
 
     private void audit(AbstractItemModel abstractItemModel, String status) {
         String className = abstractItemModel.getClass().getSimpleName();
