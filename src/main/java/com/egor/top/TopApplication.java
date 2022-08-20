@@ -19,7 +19,7 @@ public class TopApplication {
 
     @PostConstruct
     public void initDatabase(){
-        hibernationService.createUsersAndRoles();
+        hibernationService.createUsersAndRolesAndAuthorities();
     }
 
 }

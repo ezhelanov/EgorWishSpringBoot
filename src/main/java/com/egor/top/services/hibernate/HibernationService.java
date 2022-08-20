@@ -1,5 +1,6 @@
 package com.egor.top.services.hibernate;
 
+import com.egor.top.models.security.AuthorityEnum;
 import com.egor.top.models.security.RoleModel;
 import com.egor.top.models.security.UserModel;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 import static com.egor.top.dummies.Dummies.*;
 import static java.lang.String.format;
@@ -62,7 +65,7 @@ public class HibernationService {
         }
     }
 
-    public void createUsersAndRoles() {
+    public void createUsersAndRolesAndAuthorities() {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
@@ -77,6 +80,8 @@ public class HibernationService {
                         format("Gamer%d", i), passwordEncoder.encode(format("gamer%d", i)), format("gamer%d@ya.ru", i))
                 );
             };
+
+            gameAdminRole.setAuthorities(Set.of(AuthorityEnum.values()));
 
             session.persist(gamerRole);
             session.persist(gameAdminRole);
