@@ -15,7 +15,7 @@ spring:
         enable_lazy_load_no_trans: true
 logging:
   config: classpath:log4j2.properties
-custom:
-  jwt:
-    secret: jwtegorka
-    expiration_ms: 360000
+jwt:
+  secret: jwtegorka
+  expiration:
+    ms: 360000

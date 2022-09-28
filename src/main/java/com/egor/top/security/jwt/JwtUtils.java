@@ -1,29 +1,27 @@
 package com.egor.top.security.jwt;
 
-import com.egor.top.security.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Slf4j
 @Component
-public class JwtServiceImpl implements JwtService {
+public class JwtUtils {
 
-    @Value("${custom.jwt.secret}")
+    @Value("${jwt.secret}")
     private String jwtSecret;
 
-    @Value("${custom.jwt.expiration_ms}")
+    @Value("${jwt.expiration.ms}")
     private long jwtExpirationMs;
 
 
-    @Override
     public String generateJwt(Authentication authentication) {
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         Date now = new Date();
 
@@ -35,31 +33,25 @@ public class JwtServiceImpl implements JwtService {
                 .compact();
     }
 
-    @Override
     public String getUserNameFromJwt(String jwt) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(jwt).getBody().getSubject();
     }
 
-    @Override
     public boolean isValidJwt(String jwt) {
-
         try {
-
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(jwt);
             return true;
-
         } catch (SignatureException e) {
             LOG.error("Invalid JWT signature: {}", e.getMessage());
         } catch (MalformedJwtException e) {
-            LOG.error("Invalid JWT token: {}", e.getMessage());
+            LOG.error("Invalid JWT: {}", e.getMessage());
         } catch (ExpiredJwtException e) {
-            LOG.error("JWT token is expired: {}", e.getMessage());
+            LOG.error("JWT is expired: {}", e.getMessage());
         } catch (UnsupportedJwtException e) {
-            LOG.error("JWT token is unsupported: {}", e.getMessage());
+            LOG.error("JWT is unsupported: {}", e.getMessage());
         } catch (IllegalArgumentException e) {
             LOG.error("JWT claims string is empty: {}", e.getMessage());
         }
-
         return false;
     }
 
